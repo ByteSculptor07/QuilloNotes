@@ -24,6 +24,9 @@ Your notebooks are also flexible. With the integrated page sorter, you can easil
 
 ## 🖼️ Screenshots
 
+![](screenshots/Screenshot_Quillo_1.jpg)
+![](screenshots/Screenshot_Quillo_2.jpg)
+
 
 ## 🛫 Getting Started
 
