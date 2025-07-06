@@ -1,0 +1,31 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="android:statusBarColor">@color/background_light</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:panelFullBackground">@color/dark_green</item>
+    </style>
+    
+    <style name="Theme.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">#22000000</item>
+    </style>
+
+    <style name="Quillo.PopupMenuStyle_old" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:itemBackground">@drawable/background_popup</item>
+    </style>
+
+    <style name="Quillo.PopupMenuStyle_2" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:popupMenuStyle">@style/MyApp.PopupMenu</item>
+        <item name="android:popupBackground">@drawable/background_popup</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="MyApp.PopupMenu" parent="android:Widget.Holo.Light.ListPopupWindow">
+
+    </style>
+
+    <style name="AppTheme" parent="Base.AppTheme" />
+</resources>

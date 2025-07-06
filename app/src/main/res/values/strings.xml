@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Quillo</string>
+    <string name="welcome">Welcome to Notes</string>
+    <string name="menu_notebooks">Notebooks</string>
+    <string name="menu_shared_notebooks">Shared Notebooks</string>
+    <string name="menu_templates">Templates</string>
+    <string name="menu_flashcards">Flashcards</string>
+    <string name="menu_statistics">Statistics</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_shared">Shared</string>
+
+    <string name="button_sort_order">sort by name</string>
+    <string name="button_create">create</string>
+    <string name="button_cancel">cancel</string>
+
+    <string name="create_notebook">Notebook</string>
+    <string name="create_folder">Folder</string>
+
+    <string name="menu_sort_by_name">By Name</string>
+    <string name="menu_sort_by_date">By Date</string>
+    <string name="menu_sort_by_modified">By Last Modified</string>
+
+    <string name="hint_name_your_notebook">Name your notebook</string>
+    <string name="hint_name_your_folder">Name your folder</string>
+    <string name="page_menu_select">Select</string>
+    <string name="page_menu_duplicate">Duplicate</string>
+    <string name="page_menu_share">Share</string>
+    <string name="page_menu_export">Export</string>
+    <string name="page_menu_delete">Delete</string>
+    <string name="open_page_options">Open page options</string>
+</resources>

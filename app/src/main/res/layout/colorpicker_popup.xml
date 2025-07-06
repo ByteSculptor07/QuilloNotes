@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:layout_marginBottom="50dp"
+     android:background="@drawable/popup_background"
+     android:orientation="vertical"
+     android:layout_marginTop="50dp"
+     android:id="@+id/popupLayout">
+
+    <com.skydoves.colorpickerview.ColorPickerView
+         android:layout_height="300dp"
+         android:layout_width="300dp"
+         android:layout_marginBottom="30dp"
+         android:layout_marginTop="30dp"
+         android:id="@+id/colorPickerView"
+         android:layout_gravity="center_horizontal" />
+
+        <com.skydoves.colorpickerview.sliders.BrightnessSlideBar
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:layout_marginBottom="30dp"
+             app:borderColor_BrightnessSlider="@android:color/darker_gray"
+             app:selector_BrightnessSlider="@drawable/colorpickerview_wheel"
+             android:layout_marginLeft="30dp"
+             android:layout_marginRight="30dp"
+             app:borderSize_BrightnessSlider="0"
+             android:id="@+id/brightnessSlide" />
+
+    <LinearLayout
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:orientation="horizontal">
+
+        <Button
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:layout_marginBottom="30dp"
+             android:layout_marginLeft="30dp"
+             android:layout_marginRight="30dp"
+             style="@style/Widget.Material3.Button.OutlinedButton"
+             android:layout_marginTop="16dp"
+             android:id="@+id/left"
+             android:text="left" />
+
+        <View
+             android:layout_height="0dp"
+             android:layout_width="250dp"
+             android:layout_weight="1" />
+
+        <Button
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:layout_marginBottom="30dp"
+             android:layout_marginLeft="30dp"
+             android:layout_marginRight="30dp"
+             android:layout_marginTop="16dp"
+             android:id="@+id/right"
+             android:text="right" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:layout_marginBottom="50dp"
+     android:background="@drawable/popup_background"
+     android:orientation="vertical"
+     android:layout_marginTop="50dp"
+     android:id="@+id/popupLayout">
+
+    <com.google.android.material.textfield.TextInputLayout
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:layout_marginBottom="16dp"
+         android:hint="@string/hint_name_your_notebook"
+         android:layout_marginLeft="30dp"
+         android:layout_marginRight="30dp"
+         android:layout_marginTop="30dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:textColor="@color/text"
+             android:id="@+id/textField" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <HorizontalScrollView
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:scrollbars="none"
+         android:layout_marginLeft="30dp"
+         android:layout_marginRight="30dp">
+
+        <LinearLayout
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:orientation="horizontal"
+             android:id="@+id/templateList">
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <LinearLayout
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:orientation="horizontal">
+
+        <Button
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:layout_marginBottom="30dp"
+             android:layout_marginLeft="30dp"
+             android:layout_marginRight="30dp"
+             style="@style/Widget.Material3.Button.OutlinedButton"
+             android:layout_marginTop="16dp"
+             android:id="@+id/cancel"
+             android:text="@string/button_cancel" />
+
+        <View
+             android:layout_height="0dp"
+             android:layout_width="250dp"
+             android:layout_weight="1" />
+
+        <Button
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:layout_marginBottom="30dp"
+             android:layout_marginLeft="30dp"
+             android:layout_marginRight="30dp"
+             android:layout_marginTop="16dp"
+             android:id="@+id/create"
+             android:textColor="@color/white"
+             android:text="@string/button_create" />
+
+    </LinearLayout>
+
+</LinearLayout>

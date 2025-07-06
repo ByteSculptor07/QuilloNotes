@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="android:statusBarColor">@color/background_light</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:panelFullBackground">@color/dark_green</item>
+    </style>
+
+    <style name="Theme.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">#22000000</item>
+    </style>
+
+    <style name="AppTheme" parent="Base.AppTheme" />
+</resources>

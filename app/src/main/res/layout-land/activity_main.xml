@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:foreground="@drawable/shape_window_dim"
+     android:background="@color/background_light"
+     android:fitsSystemWindows="true"
+     android:id="@+id/parentLayout">
+    
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+    
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:background="@drawable/menu_background"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_weight="1">
+    
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="32sp"
+                android:layout_marginTop="10dp"
+                android:text="@string/app_name"
+                android:fontFamily="@font/prompt_light"
+                app:fontFamily="@font/prompt_light" />
+            
+            <View
+                android:layout_height="40dp"
+                android:layout_width="match_parent" />
+    
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/notebooks"
+                android:gravity="center_vertical|left"
+                android:background="@drawable/button_background_selected"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true">
+    
+                <ImageView
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:src="@drawable/icon_notebook" />
+    
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/menu_notebooks" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/sharednotebooks"
+                android:gravity="center_vertical|left"
+                android:background="@drawable/menu_button_background"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true">
+    
+                <ImageView
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/icon_shared" />
+    
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/menu_shared_notebooks" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/templates"
+                android:gravity="center_vertical|left"
+                android:background="@drawable/menu_button_background"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true">
+    
+                <ImageView
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/icon_templates" />
+    
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/menu_templates" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/flashcards"
+                android:gravity="center_vertical|left"
+                android:background="@drawable/menu_button_background"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true">
+    
+                <ImageView
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/icon_flashcards" />
+    
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/menu_flashcards" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/statistics"
+                android:gravity="center_vertical|left"
+                android:background="@drawable/menu_button_background"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true">
+    
+                <ImageView
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/icon_statistics" />
+    
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/menu_statistics" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/settings"
+                android:gravity="center_vertical|left"
+                android:background="@drawable/menu_button_background"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true">
+    
+                <ImageView
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/icon_settings" />
+    
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/menu_settings" />
+    
+            </LinearLayout>
+    
+        </LinearLayout>
+    
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:layout_weight="3">
+            
+            <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+            
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/buttonPanel"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentLeft="true">
+
+                    <Button
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/create"
+                        android:layout_margin="10dp"
+                        android:drawableLeft="@drawable/icon_add"
+                        android:text="@string/button_create"/>
+
+                    <Button
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_margin="10dp"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:text="@string/button_sort_order"/>
+            
+                </LinearLayout>
+                
+                <ImageView
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"
+                    android:layout_margin="10dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/icon_user" />
+                
+            </RelativeLayout>
+            
+            <View
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:background="#aaaaaa"/>
+    
+            <ScrollView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" >
+            
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/folderList" />
+            </ScrollView>
+    
+        </LinearLayout>
+    
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/parentLayout"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:background="@color/dark_green">
+
+        <ImageButton
+            android:layout_height="30dp"
+            android:layout_width="30dp"
+            android:id="@+id/back"
+            android:src="@drawable/icon_back"
+            android:contentDescription="@null"
+            android:scaleType="centerInside"
+            android:background="@drawable/button_background"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="10dp"
+            app:tint="@color/text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:id="@+id/title"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/text" />
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp" >
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_export"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:id="@+id/export"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_chat"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:id="@+id/chat"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_options"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:id="@+id/options"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:elevation="5dp"
+        android:background="@color/background_toolbar">
+
+        <HorizontalScrollView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_backward_disabled"
+                android:contentDescription="@null"
+                android:id="@+id/undo"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_forward_disabled"
+                android:contentDescription="@null"
+                android:id="@+id/redo"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_save"
+                android:contentDescription="@null"
+                android:id="@+id/save"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <View
+                android:layout_height="match_parent"
+                android:layout_width="1dp"
+                android:layout_margin="10dp"
+                android:background="@color/text"
+                app:tint="@color/text" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_pencil"
+                android:id="@+id/pen"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_highlighter"
+                android:id="@+id/highlighter"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_eraser"
+                android:id="@+id/eraser"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <View
+                android:layout_height="match_parent"
+                android:layout_width="1dp"
+                android:layout_margin="10dp"
+                android:background="@color/text" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_lasso"
+                android:id="@+id/lasso"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_laser"
+                android:id="@+id/laser"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_path"
+                android:id="@+id/path"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <View
+                android:layout_height="match_parent"
+                android:layout_width="1dp"
+                android:layout_margin="10dp"
+                android:background="@color/text" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_textbox"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_image"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:id="@+id/image"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:src="@drawable/icon_pdf"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:id="@+id/pdf"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <View
+                android:layout_height="match_parent"
+                android:layout_width="1dp"
+                android:layout_margin="10dp"
+                android:background="@color/text" />
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/colors"
+                android:orientation="horizontal" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:id="@+id/add_color"
+                android:src="@drawable/icon_add_circle"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+            <View
+                android:layout_height="match_parent"
+                android:layout_width="1dp"
+                android:layout_margin="10dp"
+                android:background="@color/text" />
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/lines"
+                android:orientation="horizontal" />
+
+            <ImageButton
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:id="@+id/add_line"
+                android:src="@drawable/icon_add_circle"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:background="@drawable/button_background"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                app:tint="@color/text" />
+
+        </LinearLayout>
+
+        </HorizontalScrollView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/sidebar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@drawable/background_sidebar"
+            android:orientation="horizontal" />
+
+        <com.github.bytesculptor07.quillo.CustomScrollView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            app:alignment="center"
+            app:hasClickableChildren="true"
+            app:animationDuration="280"
+            android:scrollbars="vertical|horizontal"
+            app:minZoom="0.1"
+            app:minZoomType="realZoom"
+            android:background="@color/background"
+            app:transformation="centerInside"
+            app:transformationGravity="auto"
+            app:flingEnabled="true"
+            app:threeFingersScrollEnabled="true"
+            app:horizontalPanEnabled="true"
+            app:maxZoomType="realZoom"
+            app:overScrollHorizontal="true"
+            app:scrollEnabled="true"
+            app:twoFingersScrollEnabled="true"
+            app:overScrollVertical="true"
+            app:overPinchable="false"
+            app:oneFingerScrollEnabled="true"
+            app:maxZoom="10"
+            app:verticalPanEnabled="true"
+            android:id="@+id/zoomlayout"
+            app:zoomEnabled="true">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_margin="0dp"
+                android:padding="0dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="0dp"
+                    android:padding="0dp"
+                    android:orientation="vertical"
+                    android:id="@+id/parent_container">
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_height="2970dp"
+                    android:layout_width="2100dp"
+                    android:background="#eeeeee"
+                    android:layout_margin="10dp"
+                    android:id="@+id/add_page">
+
+                </FrameLayout>
+
+                <ImageView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/pdfView"/>
+                <LinearLayout
+                    android:layout_width="2200dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+
+                    <ImageButton
+                        android:id="@+id/my_image_button"
+                        android:layout_width="500dp"
+                        android:layout_height="500dp"
+                        android:src="@drawable/icon_add"
+                        android:background="@android:color/transparent" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.github.bytesculptor07.quillo.CustomScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

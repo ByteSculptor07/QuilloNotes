@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#5C7A61</color>
+    <color name="light_green">#1F2A22</color>
+    <color name="dark_green">#2B3A30</color>
+    <color name="green_selected">#3E4F43</color>
+    <color name="background_light">#121212</color>
+    <color name="background_toolbar">#1A1A1A</color>
+    <color name="text">#FFFFFF</color>
+
+    <color name="sidebar">#e9f0ea</color>
+    <color name="background">#050505</color>
+    <color name="white">#ffffff</color>
+
+    <color name="folder_blue_dark">#0097cf</color>
+    <color name="folder_red">#E57373</color>
+    <color name="folder_blue">#64B5F6</color>
+    <color name="folder_green">#81C784</color>
+    <color name="folder_yellow">#FFF176</color>
+    <color name="folder_orange">#FFB74D</color>
+    <color name="folder_purple">#BA68C8</color>
+    <color name="folder_cyan">#4DD0E1</color>
+    <color name="folder_magenta">#F06292</color>
+    <color name="folder_lime">#DCE775</color>
+    <color name="folder_teal">#4DB6AC</color>
+    <color name="folder_pink">#F8BBD0</color>
+    <color name="folder_lavender">#E1BEE7</color>
+    <color name="folder_brown">#A1887F</color>
+    <color name="folder_maroon">#D32F2F</color>
+    <color name="folder_olive">#C0CA33</color>
+    <color name="folder_navy">#3949AB</color>
+    <color name="folder_turquoise">#26A69A</color>
+    <color name="folder_indigo">#5C6BC0</color>
+    <color name="folder_violet">#9575CD</color>
+    <color name="folder_mauve">#CE93D8</color>
+    <color name="folder_crimson">#E57373</color>
+    <color name="folder_chartreuse">#D4E157</color>
+    <color name="folder_plum">#E1BEE7</color>
+    <color name="folder_goldenrod">#FFD54F</color>
+    <color name="folder_seagreen">#66BB6A</color>
+    <color name="folder_salmon">#FF8A65</color>
+    <color name="folder_aquamarine">#80DEEA</color>
+    <color name="folder_tomato">#FF7043</color>
+    <color name="folder_slateblue">#7986CB</color>
+    <color name="folder_gray">#B0BEC5</color>
+    <color name="folder_silver">#CFD8DC</color>
+    <color name="folder_black">#212121</color>
+</resources>
