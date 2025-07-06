@@ -55,9 +55,15 @@ To sync your notes using Dropbox, you need to obtain a Dropbox API Key.
 * Enter "Quillo" as the app name
 * Click "Create app"
 
-#### 3. Copy the App key
+#### 3. Set Permissions
+* Go to the "Permissions"-tab
+* Choose "files.metadata.write" and "files.metadata.read"
+* Choose "files.content.write" and "files.content.read"
+* Click "Submit"
 
-#### 4. Set API key in the app
+#### 4. Copy the App key
+
+#### 5. Set API key in the app
 * In ```welcomeActivity.java```, line 21, replace ```<your-app-key>``` with your key
 * In ```AndroidManifest.xml```, line 51, replace ```"db-<your-app-key>"``` with your key. Make sure you keep the "db-" prefix. 
 
