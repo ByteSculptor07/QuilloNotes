@@ -1924,31 +1924,12 @@ public class drawFragment extends Fragment implements DrawingView.DrawingListene
                         }
                     }
                 });
-            //use
+
+                //use
                 linePopupButtonRight.setOnClickListener(
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                        /*
-                                changeColor(colorpickerColor);
-                                // btn.setImageTintList(ColorStateList.valueOf(colorpickerColor));
-                                GradientDrawable drawable2 = new GradientDrawable();
-                                drawable2.setShape(GradientDrawable.OVAL);
-                                drawable2.setColor(0x22000000);
-                                // set original color to old button
-                                GradientDrawable drawable3 = new GradientDrawable();
-                                drawable3.setShape(GradientDrawable.OVAL);
-                                drawable3.setColor(oldColor);
-                                drawable3.setStroke(2, 0xFFFFFFFF);
-                                if (oldColorButton != null) {
-                                    oldColorButton.setBackgroundResource(
-                                            R.drawable.button_background);
-                                    oldColorButton.setImageDrawable(drawable3);
-                                }
-                                ImageButton btn = (ImageButton) obj;
-                                oldColorButton = btn;
-                                btn.setBackground(drawable2);
-                        */
                                 popupWindowLine.dismiss();
                             }
                         });
