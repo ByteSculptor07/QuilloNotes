@@ -100,7 +100,7 @@ Quillo wouldn't be possible without these awesome open source libraries and tool
 - [Gson](https://github.com/google/gson) – for JSON serialization
 - [OkHttp](https://square.github.io/okhttp/) – for networking
 - [Dropbox SDK](https://github.com/dropbox/dropbox-sdk-java) – for cloud sync
-- [DocumentScanner by WebsiteBeaver](https://github.com/WebsiteBeaver/document-scanner) – for built-in document scanning
+- [DocumentScanner by WebsiteBeaver](https://github.com/WebsiteBeaver/android-document-scanner) – for built-in document scanning
 
 
 Many thanks to all library authors! 💙
