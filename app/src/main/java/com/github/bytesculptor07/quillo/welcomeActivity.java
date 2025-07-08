@@ -18,7 +18,7 @@ import com.dropbox.core.android.Auth;
 
 public class welcomeActivity extends AppCompatActivity {
 
-    private static final String APP_KEY = "<your-app-key>"; // replace by your App Key
+    private static final String APP_KEY = BuildConfig.DROPBOX_KEY;
     boolean authRequested = false;
 
     @Override

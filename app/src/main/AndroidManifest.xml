@@ -48,7 +48,7 @@
             android:launchMode="singleTask">
             
             <intent-filter>
-                <data android:scheme="db-<your-app-key>" />
+                <data android:scheme="${dropboxKey}" />
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />

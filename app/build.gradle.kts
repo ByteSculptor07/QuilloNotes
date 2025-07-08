@@ -1,3 +1,14 @@
+import java.util.Properties
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("keystore.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+
+val dropboxKey: String = localProperties.getProperty("DROPBOX_KEY") ?: ""
+
+
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -5,6 +16,10 @@ plugins {
 android {
     namespace = "com.github.bytesculptor07.quillo"
     compileSdk = 35
+
+    buildFeatures {
+        buildConfig = true
+    }
 
     defaultConfig {
         applicationId = "com.github.bytesculptor07.quillo"
@@ -14,6 +29,9 @@ android {
         versionName = "0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "DROPBOX_KEY", "\"$dropboxKey\"")
+        manifestPlaceholders["dropboxKey"] = "db-$dropboxKey"
     }
 
     buildTypes {

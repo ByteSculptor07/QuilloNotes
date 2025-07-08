@@ -130,8 +130,6 @@ public class DrawingView extends View {
         erasingCirclePaint.setStrokeWidth(2f);
     }
 
-    //TODO: fix bug with different screen sizes while syncing caused by different resolution, because canvas is multiplied by density and points arent. When drawn, remove density and add in onDraw, so only store raw data in the path and multiply it in onDraw
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
