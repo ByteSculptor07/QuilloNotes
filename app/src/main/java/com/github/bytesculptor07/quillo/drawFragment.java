@@ -459,18 +459,18 @@ public class drawFragment extends Fragment implements DrawingView.DrawingListene
     }
 
     private void createFragment(Fragment fragment){
-        requireActivity().getSupportFragmentManager().beginTransaction()
+        getChildFragmentManager().beginTransaction()
                 .add(R.id.sidebar, fragment)
                 .hide(fragment)
                 .commit();
     }
     private void showFragment(Fragment fragment){
-        requireActivity().getSupportFragmentManager().beginTransaction()
+        getChildFragmentManager().beginTransaction()
                 .show(fragment)
                 .commit();
     }
     private void hideFragment(Fragment fragment){
-        requireActivity().getSupportFragmentManager().beginTransaction()
+        getChildFragmentManager().beginTransaction()
                 .hide(fragment)
                 .commit();
     }
