@@ -96,7 +96,7 @@ Quillo wouldn't be possible without these awesome open source libraries and tool
 - [ZoomLayout](https://github.com/natario1/ZoomLayout) by Otaliastudios – for smooth zoom and pan support
 - [ColorPickerView](https://github.com/skydoves/ColorPickerView) by skydoves – for color selection
 - [Glide](https://github.com/bumptech/glide) – for efficient image loading and caching
-- [PDFBox for Android](https://github.com/TomRoush/PdfBox-Android) – for PDF rendering and export
+- [PDFBox for Android](https://github.com/TomRoush/PdfBox-Android) – for PDF export
 - [Gson](https://github.com/google/gson) – for JSON serialization
 - [OkHttp](https://square.github.io/okhttp/) – for networking
 - [Dropbox SDK](https://github.com/dropbox/dropbox-sdk-java) – for cloud sync
