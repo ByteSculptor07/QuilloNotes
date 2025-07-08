@@ -78,10 +78,10 @@ Create a file called ```keystore.local``` in the project root with the content `
 
 Firstly, thank you for your interest in contributing to this project!
 
-As you may have noticed, the app is far from finished. Many features aren't implemented yet or just incomplete. Not to mention the bugs... So I really need your help. It doesn't matter whether you contribute a lot or if you just fix a typo. Every help is appreciated.
+The app is still in an early stage of development. Many features I have planned aren't implemented yet and of course, there are bugs. So any help is welcome, whether it's a new feature or just fixing a typo.
 
 > [!NOTE]  
-> Some features aren't implemented yet, but visible in the UI (e.g. buttons). If you'd like to help, check out the [issues](https://github.com/ByteSculptor07/QuilloNotes/issues).
+> If you'd like to contribute, check out the [issues](https://github.com/ByteSculptor07/QuilloNotes/issues).
 
 
 ## 📜 License
