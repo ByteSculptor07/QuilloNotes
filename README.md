@@ -64,11 +64,11 @@ To sync your notes using Dropbox, you need to obtain a Dropbox API Key.
 * Choose "files.content.write" and "files.content.read"
 * Click "Submit"
 
-#### 4. Copy the App key
+#### 4. Copy the App Key
 
-#### 5. Set API key in the app
-* In ```welcomeActivity.java```, line 21, replace ```<your-app-key>``` with your key
-* In ```AndroidManifest.xml```, line 51, replace ```"db-<your-app-key>"``` with your key. Make sure you keep the "db-" prefix. 
+#### 5. Set App Key in the app
+
+Create a file called ```keystore.local``` in the project root with the content ```DROPBOX_KEY=<your-key-here>```. Make sure to replace <your-key-here> with your actual Dropbox key.
 
 > [!WARNING]  
 > Do **NOT** commit your API Key to the repository.
