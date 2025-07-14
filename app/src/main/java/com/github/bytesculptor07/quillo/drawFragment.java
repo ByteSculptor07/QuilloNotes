@@ -251,7 +251,6 @@ public class drawFragment extends Fragment implements DrawingView.DrawingListene
         ImageButton exportButton = fragmentView.findViewById(R.id.export);
         ImageButton optionsButton = fragmentView.findViewById(R.id.options);
         ImageButton chatButton = fragmentView.findViewById(R.id.chat);
-
         chatButton.setVisibility(View.GONE);  // remove chat button as long as there is no chat
         
         sidebar = fragmentView.findViewById(R.id.sidebar);
@@ -1903,12 +1902,12 @@ public class drawFragment extends Fragment implements DrawingView.DrawingListene
         View parentView = fragmentView.findViewById(R.id.parentLayout);
         popupWindowLine.showAtLocation(parentView, Gravity.CENTER, 0, -GeneralUtils.dpToPx(getContext(), 25/2));
         layout_MainMenu.getForeground().setAlpha(150);
-        
+
         switch (action) {
             case ACTION_ADD_LINE:
                 linePopupButtonLeft.setText("save");
                 linePopupButtonRight.setText("use");
-            
+
                 //save
                 linePopupButtonLeft.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1930,17 +1929,20 @@ public class drawFragment extends Fragment implements DrawingView.DrawingListene
                         new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                int selectedLine = (int) lineSlider.getValue();
+                                changeStrokeWidth(selectedLine);
+                                currentLine = selectedLine;
                                 popupWindowLine.dismiss();
                             }
                         });
-            
+
                 break;
             case ACTION_CHANGE_LINE:
                 linePopupButtonLeft.setText("delete");
                 linePopupButtonRight.setText("save");
                 lineSlider.setValue((int) obj);
                 //save
-            
+
                 linePopupButtonRight.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -1954,15 +1956,15 @@ public class drawFragment extends Fragment implements DrawingView.DrawingListene
                         //changeColor((int) obj);
                         saveLines();
                         addLineButtons();
-                        
+
                         GradientDrawable drawable2 = new GradientDrawable();
                         drawable2.setShape(GradientDrawable.OVAL);
                         drawable2.setColor(0x22000000);
-                        
+
                         ImageButton btn = fragmentView.findViewById(R.id.add_line);
                         oldLineButton = btn;
                         btn.setBackground(drawable2);
-                        
+
                         popupWindowLine.dismiss();
                     }
                 });
@@ -1973,7 +1975,7 @@ public class drawFragment extends Fragment implements DrawingView.DrawingListene
                         buttonLines.remove(Integer.valueOf((int) obj));
                         saveLines();
                         addLineButtons();
-                        
+
                         ImageButton btn = fragmentView.findViewById(R.id.add_line);
                         if (!buttonLines.contains(currentLine)) {
                             GradientDrawable drawable2 = new GradientDrawable();
@@ -1981,13 +1983,13 @@ public class drawFragment extends Fragment implements DrawingView.DrawingListene
                             drawable2.setColor(0x22000000);
                             btn.setBackground(drawable2);
                         }
-                        
+
                         oldLineButton = btn;
-                        
+
                         popupWindowLine.dismiss();
                     }
                 });
-            
+
                 break;
         }
     }
