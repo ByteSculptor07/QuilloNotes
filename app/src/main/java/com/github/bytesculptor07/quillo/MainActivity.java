@@ -941,9 +941,7 @@ public class MainActivity extends AppCompatActivity {
             if (data != null) {
                 thumbnail = createThumbnail(GeneralUtils.dpToPx(MainActivity.this, 150), GeneralUtils.dpToPx(MainActivity.this, (int) (150 * 2970f / 2100f)), data, background);
             } else {
-                thumbnail = Bitmap.createBitmap(GeneralUtils.dpToPx(MainActivity.this, 150), GeneralUtils.dpToPx(MainActivity.this, (int) (150 * 2970f / 2100f)), Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(thumbnail);
-                canvas.drawColor(Color.WHITE);
+                thumbnail = createBackgroundThumbnail(GeneralUtils.dpToPx(MainActivity.this, 150), GeneralUtils.dpToPx(MainActivity.this, (int) (150 * 2970f / 2100f)), background);
             }
         } catch(Exception e) {
             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
