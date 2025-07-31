@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:id="@+id/parentLayout"
+     android:orientation="vertical">
+
+    <com.github.bytesculptor07.quillo.CustomScrollView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                app:alignment="center"
+                app:hasClickableChildren="true"
+                app:animationDuration="280"
+                android:scrollbars="vertical|horizontal"
+                app:minZoom="0.1"
+                app:minZoomType="realZoom"
+                android:background="@color/background"
+                app:transformation="centerInside"
+                app:transformationGravity="auto"
+                app:flingEnabled="true"
+                app:threeFingersScrollEnabled="true"
+                app:horizontalPanEnabled="true"
+                app:maxZoomType="realZoom"
+                app:overScrollHorizontal="true"
+                app:scrollEnabled="true"
+                app:twoFingersScrollEnabled="true"
+                app:overScrollVertical="true"
+                app:overPinchable="false"
+                app:oneFingerScrollEnabled="true"
+                app:maxZoom="10"
+                app:verticalPanEnabled="true"
+                android:id="@+id/zoomlayout"
+                app:zoomEnabled="true">
+        
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical" >
+        
+            <com.github.bytesculptor07.quillo.gl.QuDrawingView
+                android:layout_height="2970dp"
+                android:layout_width="2100dp"
+                android:id="@+id/drawingView" />
+        
+        </LinearLayout>
+    
+    </com.github.bytesculptor07.quillo.CustomScrollView>
+
+</LinearLayout>

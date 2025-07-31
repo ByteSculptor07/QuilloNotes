@@ -30,6 +30,10 @@
             android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize" >
         </activity>
         <activity
+            android:name=".customDrawingEngineTestActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize" >
+        </activity>
+        <activity
             android:name=".welcomeActivity"
             android:exported="true"
             android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize">
