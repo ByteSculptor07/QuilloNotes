@@ -165,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout flashcards = findViewById(R.id.flashcards);
         LinearLayout statistics = findViewById(R.id.statistics);
         LinearLayout settings = findViewById(R.id.settings);
+        LinearLayout drawingEngineTestButton = findViewById(R.id.CustomDrawingEngineTest);
         
         Button create = findViewById(R.id.create);
         folderList = findViewById(R.id.folderList);
@@ -179,6 +180,10 @@ public class MainActivity extends AppCompatActivity {
         settings.setOnClickListener(menuChange);
         
         create.setOnClickListener(createNew);
+
+        if (drawingEngineTestButton != null) {
+            drawingEngineTestButton.setOnClickListener(drawingEngineTestButtonListener);
+        }
     }
     
     public void initPortrait() {
@@ -238,6 +243,14 @@ public class MainActivity extends AppCompatActivity {
             */
             //showPopup();
             showPopupMenu(view);
+        }
+    };
+
+    private final View.OnClickListener drawingEngineTestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(MainActivity.this, customDrawingEngineTestActivity.class);
+            startActivity(intent);
         }
     };
     

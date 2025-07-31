@@ -169,7 +169,7 @@
                     android:text="@string/menu_statistics" />
     
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -181,20 +181,47 @@
                 android:orientation="horizontal"
                 android:clickable="true"
                 android:focusable="true">
-    
+
                 <ImageView
                     android:layout_height="30dp"
                     android:layout_width="30dp"
                     android:importantForAccessibility="no"
                     android:src="@drawable/icon_settings" />
-    
+
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textSize="20sp"
                     android:layout_marginLeft="10dp"
                     android:text="@string/menu_settings" />
-    
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/CustomDrawingEngineTest"
+                android:gravity="center_vertical|left"
+                android:background="@drawable/menu_button_background"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/icon_test" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Custom Drawing Engine Test" />
+
             </LinearLayout>
     
         </LinearLayout>
