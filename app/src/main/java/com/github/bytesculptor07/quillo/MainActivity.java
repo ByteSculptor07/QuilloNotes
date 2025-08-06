@@ -227,16 +227,6 @@ public class MainActivity extends AppCompatActivity {
     private final View.OnClickListener createNew = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            /*
-            Folder folder = new Folder();
-            folder.setName("Maths");
-            folder.setIcon(R.drawable.icon_folder_math);
-            folder.setColor(R.color.folder_blue);
-            folder.setPath(currentFolder);
-            foldersdbhelper.addFolder(folder);
-            loadFolder();
-            */
-            //showPopup();
             showPopupMenu(view);
         }
     };
@@ -246,13 +236,6 @@ public class MainActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         setContentView(R.layout.activity_main);
         initUi();
-        /*
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.activity_main_landscape); // Manually inflate landscape layout
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            setContentView(R.layout.activity_main); // Manually inflate portrait layout
-        }
-        */
     }
     
     @Override
@@ -287,18 +270,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("Sync", "Failed to sync data: " + e.getMessage());
                     }
                 });
-                /*
-                ExecutorService executorService = Executors.newSingleThreadExecutor();
-                executorService.execute(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                //syncNotes();
-                                SyncUtils.syncAll(MainActivity.this, client);
-                                //syncFolder();
-                            }
-                        });
-                 */
+
             } catch (JsonReadException e) {
                 Toast.makeText(this, "an error occured: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -308,16 +280,12 @@ public class MainActivity extends AppCompatActivity {
     public void adjustStatusBar(LinearLayout buttonPanel) {
         ViewCompat.setOnApplyWindowInsetsListener(buttonPanel, (v, windowInsets) -> {
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
-            // Apply the insets as a margin to the view. This solution sets only the
-            // bottom, left, and right dimensions, but you can apply whichever insets are
-            // appropriate to your layout. You can also update the view padding if that's
-            // more appropriate.
+
             ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
             mlp.topMargin = insets.top;
             v.setLayoutParams(mlp);
 
-            // Return CONSUMED if you don't want want the window insets to keep passing
-            // down to descendant views.
+
             return WindowInsetsCompat.CONSUMED;
         });
 
@@ -341,322 +309,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-    
-    public String hex(byte[] data) {
-        char[] buf = new char[2*data.length];
-        int i = 0;
-        char[] hex_digits = new char[]{
-        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-        'a', 'b', 'c', 'd', 'e', 'f'};
-        for (byte b : data) {
-            buf[i++] = hex_digits[(b & 0xf0) >>> 4];
-            buf[i++] = hex_digits[b & 0x0f];
-        }
-        return new String(buf);
-    }
-    /*
-    public void syncNotes() {
-        listFolderRecursive(client, "", new FolderListCallback() {
-            @Override
-            public void onSuccess(List<Metadata> syncedNotes) {
-                //new Handler(Looper.getMainLooper()).post(() -> {
-                    List<Page> allNotes = notesdbhelper.getAllPages();
-                    new Handler(Looper.getMainLooper()).post(() -> 
-                        Toast.makeText(MainActivity.this, "Synced Notes: " + syncedNotes.size() + ", total: " + allNotes.size(), Toast.LENGTH_SHORT).show()
-                    );
-                    List<String> syncedNoteNames = new ArrayList<>();
-                    for (Metadata md : syncedNotes) {
-                        syncedNoteNames.add(md.getPathLower());
-                    }
-                            
-                    //check for old notes which are not synced
-                    List<String> localNoteNames = new ArrayList<>();
-                    for (Page pg : allNotes) {
-                        localNoteNames.add(pg.getNoteId() + "_" + pg.getNumber() + ".qdoc");
-                        if (!syncedNoteNames.contains("/notes" + pg.getNoteId() + "_" + pg.getNumber() + ".qdoc")) {
-                            notesdbhelper.updatePage(pg); //add changes flag
-                            //Log.d("Debug", "note not found: " + pg.getNoteId());
-                            //Log.d("Debug", "Number: " + pg.getNumber());
-                            new Handler(Looper.getMainLooper()).post(() -> 
-                                Toast.makeText(MainActivity.this, "syncing note: " + pg.getNoteId(), Toast.LENGTH_SHORT).show()
-                            );
-                        } else {
-                            //Log.d("Debug", "note was found: " + pg.getNoteId());
-                        }
-                    }
-                    syncChanges();
-                            
-                    //check for new notes from another device which are not downloaded
-                    for (String name : syncedNoteNames) {
-                        if (!localNoteNames.contains(name.substring(6))) {
-                            //download note
-                            try {
-                                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                                try {
-                                    FileMetadata metadata = client.files()
-                                            .downloadBuilder(name)
-                                            .download(outputStream);
-
-                                    byte[] fileContent = outputStream.toByteArray();
-                                    String fileContentAsString = new String(fileContent, StandardCharsets.UTF_8);
-                                    notesdbhelper.addPage(Page.importFromJson(fileContentAsString), SyncUtils.STATUS_SYNCED);
-                                } finally {
-                                    outputStream.close();
-                                }
-                            } catch(IOException e) {
-                                new Handler(Looper.getMainLooper()).post(() -> 
-                                    Toast.makeText(MainActivity.this, "ioexception: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                                );
-                            } catch(DbxException e) {
-                                new Handler(Looper.getMainLooper()).post(() -> 
-                                    Toast.makeText(MainActivity.this, "dbxecception: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                                );
-                            }
-                        }
-                    }
-                    
-                    
-                    //check for deprecated notes
-                    for (Metadata mtd : syncedNotes) {
-                        String cloudHash = ((FileMetadata) mtd).getContentHash();
-                        //Toast.makeText(MainActivity.this, "hash: " + cloudHash, Toast.LENGTH_SHORT).show();
-                                
-                        String path = mtd.getPathLower();
-                        List<Page> pgs = notesdbhelper.getPagesByNoteId(NoteParser.extractNoteId(path));
-                        String content = null;
-                        Page localPage = new Page();
-                        for (Page pg : pgs) {
-                            if (pg.getNumber() == NoteParser.extractNumber(path)) {
-                                localPage = pg;
-                                content = pg.exportToJson();
-                                break;
-                            }
-                        }
-                                
-                        MessageDigest hasher = new DropboxContentHasher();
-                        byte[] buf = new byte[1024];
-                        InputStream in = null;
-                        if (content != null) {
-                            in = new ByteArrayInputStream(content.getBytes());
-                        }
-                        try {
-                            while (true) {
-                                int n = 0;
-                                if (in != null) {
-                                    n = in.read(buf);
-                                }
-                                if (n < 0) break;  // EOF
-                                hasher.update(buf, 0, n);
-                            }
-                            in.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        byte[] rawHash = hasher.digest();
-                        //System.out.println(hex(rawHash));
-                        String localHash = hex(rawHash);
-
-                        if (cloudHash != null && !cloudHash.equals(localHash)) {
-                            //Toast.makeText(MainActivity.this, "note needs to be synced", Toast.LENGTH_SHORT).show();
-                            //if hashes are different, changes are probably made by another device, because we synced our changes, so download
-                            try {
-                                try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
-                                    FileMetadata metadata = client.files()
-                                            .downloadBuilder(path)
-                                            .download(outputStream);
-
-                                    byte[] fileContent = outputStream.toByteArray();
-                                    String fileContentAsString = new String(fileContent, StandardCharsets.UTF_8);
-                                    notesdbhelper.updatePage(Page.importFromJson(fileContentAsString), SyncUtils.STATUS_SYNCED);
-                                    Log.d("Debug", "different hash, downloading note: " + localPage.getNoteId() + ", page: " + localPage.getNumber());
-                                    //Log.d("Debug", "cloudHash: " + cloudHash);
-                                    //Log.d("Debug", "localHash: " + localHash);
-                                }
-                            } catch(IOException e) {
-                                new Handler(Looper.getMainLooper()).post(() ->
-                                    Toast.makeText(MainActivity.this, "ioexception: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                                );
-                            } catch(DbxException e) {
-                                new Handler(Looper.getMainLooper()).post(() ->
-                                    Toast.makeText(MainActivity.this, "dbxecception: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                                );
-                            }
-                        } else {
-                            Log.d("Debug", "same hash, keeping note: " + localPage.getNoteId() + ", page: " + localPage.getNumber());
-                        }
-                    }
-                new Handler(Looper.getMainLooper()).post(() -> 
-                    loadItems()
-                );
-            }
-    
-            @Override
-            public void onError(Exception e) {
-                new Handler(Looper.getMainLooper()).post(() -> 
-                    Toast.makeText(MainActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                );
-            }
-        });
-    }
-
-    */
-    /*
-    public void syncChanges() {
-        List<Page> pages = notesdbhelper.getPagesWithChanges();
-        for (Page pg : pages) {
-            //Toast.makeText(MainActivity.this, pg.exportToJson(), Toast.LENGTH_SHORT).show();
-            
-            ExecutorService executorService = Executors.newSingleThreadExecutor();
-                executorService.execute(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    String content = pg.exportToJson();
-                                    try {
-                                        InputStream in = new ByteArrayInputStream(content.getBytes());
-                                        String filepath = "/notes" + pg.getNoteId() + "_" + pg.getNumber() + ".qdoc";
-                                        FileMetadata metadata = client.files().uploadBuilder(filepath)
-                                        .withMode(WriteMode.OVERWRITE)
-                                        .uploadAndFinish(in);
-                                        notesdbhelper.removePageChanges(pg);
-                                    } catch(IOException e) {
-                                        new Handler(Looper.getMainLooper()).post(() -> 
-                                            Toast.makeText(MainActivity.this, "exception: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                                        );
-                                    }
-                                } catch(DbxException e) {
-                                    new Handler(Looper.getMainLooper())
-                                                .post(
-                                                    new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            Toast.makeText(MainActivity.this, "exception: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                        }
-                                            });
-                                }
-                            }
-                    });
-            
-        }
-    }
-
-    public interface FolderListCallback {
-        void onSuccess(List<Metadata> result);
-        void onError(Exception e);
-    }
-    
-    public void listFolders(FolderListCallback callback) {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.execute(() -> {
-            try {
-                List<Metadata> funcresult = new ArrayList<>();
-                ListFolderResult result = client.files().listFolder("/folder");
-    
-                while (true) {
-                    funcresult.addAll(result.getEntries());
-    
-                    if (!result.getHasMore()) {
-                        break;
-                    }
-    
-                    result = client.files().listFolderContinue(result.getCursor());
-                }
-    
-                callback.onSuccess(funcresult);
-            } catch (Exception e) {
-                new Handler(Looper.getMainLooper()).post(() -> callback.onError(e));
-            }
-        });
-    }
-    
-    public void syncFolder() {
-        //upload changes
-        syncFolderChanges();
-        //download new
-        listFolders(new FolderListCallback() {
-            @Override
-            public void onSuccess(List<Metadata> folders) {
-                List<Folder> localFolderList = foldersdbhelper.getFolders();
-                List<String> localFolders = new ArrayList<>();
-                for (Folder localF : localFolderList) {
-                    localFolders.add("/folder/" + String.valueOf(localF.getId()) + ".qdata");
-                }
-                for (Metadata folder : folders) {
-                    if (!localFolders.contains(folder.getPathLower())) {
-                        //download
-                        try {
-                            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                            try {
-                                FileMetadata metadata = client.files()
-                                        .downloadBuilder(folder.getPathLower())
-                                        .download(outputStream);
-
-                                byte[] fileContent = outputStream.toByteArray();
-                                String fileContentAsString = new String(fileContent, StandardCharsets.UTF_8);
-                                foldersdbhelper.addFolder(Folder.importFromJson(fileContentAsString), SyncUtils.STATUS_SYNCED);
-                            } finally {
-                                outputStream.close();
-                            }
-                        } catch(IOException e) {
-                            new Handler(Looper.getMainLooper()).post(() -> 
-                                Toast.makeText(MainActivity.this, "ioexception: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                            );
-                        } catch(DbxException e) {
-                            new Handler(Looper.getMainLooper()).post(() -> 
-                            Toast.makeText(MainActivity.this, "dbxecception: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                            );
-                        }
-                    }
-                }
-            }
-        
-            @Override
-            public void onError(Exception e) {
-                Toast.makeText(MainActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        //download changes
-        //upload changes
-    }
-    
-    public void syncFolderChanges() {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-                executorService.execute(
-                    new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                List<Folder> folders = foldersdbhelper.getFolderWithChanges();
-                                for (Folder folder : folders) {
-                                    String content = folder.exportToJson();
-                                    try {
-                                        InputStream in = new ByteArrayInputStream(content.getBytes());
-                                        String filepath = "/folder/" + String.valueOf(folder.getId()) + ".qdata";
-                                        FileMetadata metadata = client.files().uploadBuilder(filepath)
-                                        .withMode(WriteMode.OVERWRITE)
-                                        .uploadAndFinish(in);
-                                        foldersdbhelper.removeFolderChanges(folder);
-                                    } catch(IOException e) {
-                                        new Handler(Looper.getMainLooper()).post(() -> 
-                                            Toast.makeText(MainActivity.this, "exception: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                                        );
-                                    }
-                                }
-                            } catch(DbxException e) {
-                                    new Handler(Looper.getMainLooper())
-                                                .post(
-                                                    new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            Toast.makeText(MainActivity.this, "exception: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                        }
-                                            });
-                                }
-                            }
-                    });
-    }
-    */
 
     public void loadItems() {
         folderList.post(
@@ -792,8 +444,6 @@ public class MainActivity extends AppCompatActivity {
     }
     
     private void showPopupMenu(View view) {
-        //Context wrapper = new ContextThemeWrapper(this, R.style.Quillo_PopupMenuStyle);
-        //PopupMenu popupMenu = new PopupMenu(wrapper, view);
         PopupMenu popupMenu = new PopupMenu(MainActivity.this, view);
         MenuInflater inflater = popupMenu.getMenuInflater();
         inflater.inflate(R.menu.popup_menu, popupMenu.getMenu());
@@ -802,10 +452,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.action_notebook) {
-                        //Toast.makeText(MainActivity.this, "create notebook", Toast.LENGTH_SHORT).show();
                         showNotebookPopup();
                 } else if  (item.getItemId() == R.id.action_folder){
-                        //Toast.makeText(home.this, "Ordner ausgewählt", Toast.LENGTH_SHORT).show();
                         showFolderPopup();
                 }
                 return true;
@@ -840,7 +488,6 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Code to be executed when the button is clicked
                         currentFolder += String.valueOf(folder.getId()) + "/";
                         loadItems();
                     }
@@ -919,7 +566,6 @@ public class MainActivity extends AppCompatActivity {
         constraintSet.applyTo(constraintLayout);
 
         // Set the layout as the content view
-        //folderList.addView(constraintLayout);
         return constraintLayout;
     }
     
@@ -946,17 +592,7 @@ public class MainActivity extends AppCompatActivity {
         } catch(Exception e) {
             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        // Create an ImageButton
-        /*
-        ImageButton imageButton = new ImageButton(this);
-        ConstraintLayout.LayoutParams imageButtonParams =
-                new ConstraintLayout.LayoutParams(GeneralUtils.dpToPx(MainActivity.this, 150), GeneralUtils.dpToPx(MainActivity.this, 150));
-        imageButton.setLayoutParams(imageButtonParams);
-        imageButton.setImageBitmap(thumbnail);
-        imageButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        imageButton.setBackgroundResource(android.R.color.transparent);
-        imageButton.setId(View.generateViewId());
-        */
+
         ShapeableImageView imageButton = new ShapeableImageView(this);
         ConstraintLayout.LayoutParams imageButtonParams =
             new ConstraintLayout.LayoutParams(GeneralUtils.dpToPx(MainActivity.this, 150), GeneralUtils.dpToPx(MainActivity.this, (int) (150 * 2970f / 2100f)));
@@ -964,7 +600,7 @@ public class MainActivity extends AppCompatActivity {
         imageButton.setLayoutParams(imageButtonParams);
         imageButton.setImageBitmap(thumbnail);
         imageButton.setScaleType(ShapeableImageView.ScaleType.CENTER_INSIDE);
-        //imageButton.setBackgroundResource(android.R.color.transparent);
+
         imageButton.setForeground(ContextCompat.getDrawable(MainActivity.this, R.drawable.template_button_ripple));
         imageButton.setId(View.generateViewId());
         imageButton.setShapeAppearanceModel(
@@ -972,7 +608,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAllCorners(CornerFamily.ROUNDED, GeneralUtils.dpToPx(MainActivity.this, 16))
                         .build());
         imageButton.setElevation(GeneralUtils.dpToPx(MainActivity.this, 4));
-        //imageButton.setPadding(0, GeneralUtils.dpToPx(MainActivity.this, 15), 0, 0);
+
 
         imageButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -1039,7 +675,6 @@ public class MainActivity extends AppCompatActivity {
         constraintSet.applyTo(constraintLayout);
 
         // Set the layout as the content view
-        //folderList.addView(constraintLayout);
         return constraintLayout;
     }
     
@@ -1320,25 +955,13 @@ public class MainActivity extends AppCompatActivity {
                     imageButton.getShapeAppearanceModel().toBuilder()
                             .setAllCorners(CornerFamily.ROUNDED, GeneralUtils.dpToPx(MainActivity.this, 16))
                             .build());
-            //imageButton.setElevation(GeneralUtils.dpToPx(MainActivity.this, 4));
 
             if (bg == BACKGROUND_EMPTY) {
-                //imageButton.setBackgroundResource(R.drawable.button_background_selected);
                 imageButton.setForeground(ContextCompat.getDrawable(MainActivity.this, R.drawable.template_button_selected));
                 oldTemplateButton = imageButton;
             } else {
-                //imageButton.setBackgroundResource(R.drawable.menu_button_background);
                 imageButton.setForeground(ContextCompat.getDrawable(MainActivity.this, R.drawable.template_button_ripple));
             }
-
-            //imageButton.setScaleType(ShapeableImageView.ScaleType.CENTER_INSIDE);
-            //imageButton.setBackgroundResource(android.R.color.transparent);
-            //imageButton.setId(View.generateViewId());
-            //imageButton.setShapeAppearanceModel(
-            //    imageButton.getShapeAppearanceModel().toBuilder()
-            //            .setAllCorners(CornerFamily.ROUNDED, GeneralUtils.dpToPx(MainActivity.this, 16))
-            //            .build());
-            //imageButton.setElevation(GeneralUtils.dpToPx(MainActivity.this, 4));
             
             imageButton.setOnClickListener(
                     new View.OnClickListener() {
@@ -1355,7 +978,6 @@ public class MainActivity extends AppCompatActivity {
                     });
             imageButton.setElevation(GeneralUtils.dpToPx(MainActivity.this, 4));
 
-            //constraintLayout.addView(imageButton);
             templateList.addView(imageButton);
         }
 
@@ -1376,7 +998,6 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Toast.makeText(MainActivity.this, "cancel", Toast.LENGTH_SHORT).show();
                         notebookPopupWindow.dismiss();
                     }
                 });
@@ -1385,7 +1006,6 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Toast.makeText(MainActivity.this, currentFolder + textedit_name.getText().toString(), Toast.LENGTH_SHORT).show();
                         Page pg = new Page();
                         pg.setNoteId(currentFolder + textedit_name.getText().toString());
                         if (selectedTemplate != BACKGROUND_EMPTY) {
@@ -1412,7 +1032,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     private void loadPopup() {
-        // Inflate your custom layout
+        // Inflate custom layout
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customView = inflater.inflate(R.layout.create_popup, null);
         
@@ -1520,7 +1140,6 @@ public class MainActivity extends AppCompatActivity {
                                 oldColor.setBackground(layerDrawable1);
 
                                 selectedColor = i_final;
-                                // oldColor.setBackgroundResource(R.drawable.menu_button_background);
                                 oldColor = view;
 
                                 ShapeDrawable circle2 = new ShapeDrawable(new OvalShape());
@@ -1589,127 +1208,6 @@ public class MainActivity extends AppCompatActivity {
                         popupWindow.dismiss();
                     }
                 });
-        /*
-        popupLayoutColors = customView.findViewById(R.id.colorList);
-        Button button_cancel = customView.findViewById(R.id.cancel);
-        Button button_add = customView.findViewById(R.id.add);
-        TextInputLayout textInputLayout = customView.findViewById(R.id.textField);
-        popupSubjectInput = textInputLayout.getEditText();
-        LinearLayout popupLayout = (LinearLayout) customView.findViewById(R.id.popupLayout);
-        LinearLayout subjectLayout = (LinearLayout) customView.findViewById(R.id.subjectList);
-        
-        popupLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            }
-        });
-
-        button_cancel.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popupWindow.dismiss();
-                    }
-                });
-
-        button_add.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String subject = popupSubjectInput.getText().toString();
-                        TextView item = new TextView(requireContext()); // Use the provided context
-                        item.setText(subject); // Set text for the item
-                        item.setGravity(Gravity.CENTER);
-                        ((ViewGroup) lastSubjectLayout).removeAllViews();
-                        ((ViewGroup) lastSubjectLayout).addView(item);
-                        GradientDrawable borderDrawable = new GradientDrawable();
-                        borderDrawable.setColor(
-                                getResources().getColor(android.R.color.transparent));
-                        borderDrawable.setStroke(5, lastColor);
-                        borderDrawable.setCornerRadius(
-                                getResources().getDimension(R.dimen.border_radius));
-                        ((ViewGroup) lastSubjectLayout).setBackground(borderDrawable);
-                        popupWindow.dismiss();
-
-                        int id = ((ViewGroup) lastSubjectLayout).getId();
-                        TimetableDatabaseHelper foldersdbhelper = new TimetableDatabaseHelper(getActivity());
-                        foldersdbhelper.addSubject(subject, lastColor, id);
-                    }
-                });
-
-        int[] colorIds = {
-            R.color.homework_red,
-            R.color.homework_blue,
-            R.color.homework_green,
-            R.color.homework_yellow,
-            R.color.homework_orange,
-            R.color.homework_purple,
-            R.color.homework_cyan,
-            R.color.homework_magenta,
-            R.color.homework_lime,
-            R.color.homework_teal,
-            R.color.homework_pink,
-            R.color.homework_lavender,
-            R.color.homework_brown,
-            R.color.homework_maroon,
-            R.color.homework_olive,
-            R.color.homework_navy,
-            R.color.homework_turquoise,
-            R.color.homework_indigo,
-            R.color.homework_violet,
-            R.color.homework_mauve,
-            R.color.homework_crimson,
-            R.color.homework_chartreuse,
-            R.color.homework_plum,
-            R.color.homework_goldenrod,
-            R.color.homework_seagreen,
-            R.color.homework_salmon,
-            R.color.homework_aquamarine,
-            R.color.homework_tomato,
-            R.color.homework_slateblue,
-            R.color.homework_gray,
-            R.color.homework_silver,
-            R.color.homework_black
-        };
-
-        // Loop through the color resource IDs and call loadColors function for each color
-        for (int colorId : colorIds) {
-            int color = getResources().getColor(colorId);
-            loadColors(popupLayoutColors, color);
-        }
-
-        TimetableDatabaseHelper foldersdbhelper = new TimetableDatabaseHelper(getActivity());
-        List<Triple<String, Integer, Integer>> matchingList = foldersdbhelper.getMatchingColorsSubjectsAndPositions();
-
-        // HashSet to store unique subjects
-        HashSet<String> uniqueSubjects = new HashSet<>();
-
-        // Iterate through the list and toast each subject and its corresponding color
-        for (Triple<String, Integer, Integer> triple : matchingList) {
-            String subject = triple.getFirst();
-            // Check if the subject is already displayed
-            if (!uniqueSubjects.contains(subject)) {
-                int color = triple.getSecond();
-                loadSubjects(subjectLayout, subject, color);
-                // Add the subject to the set to mark it as displayed
-                uniqueSubjects.add(subject);
-            }
-        }
-        */
-
-        /*
-        String[] country = { "Mathe", "Deutsch", "Englisch", "Französisch", "Erdkunde", "Sport", "Musik", "Geschichte", "PoWi", "Reli", "Chemie", "Bio", "Erdkunde WPU"};
-        
-        Spinner s = (Spinner) customView.findViewById(R.id.Spinner01);
-        
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, country);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s.setAdapter(adapter);
-        */
-
-        // Show the popup at a specific location (you can adjust the coordinates)
     }
     
     private void showFolderPopup() {
@@ -1727,15 +1225,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (currentFolder.length() > 1) {
-            //Toast.makeText(MainActivity.this, currentFolder + ", length: " + String.valueOf(currentFolder.length()), Toast.LENGTH_SHORT).show();
             if (currentFolder.endsWith("/")) {
                 currentFolder = currentFolder.substring(0, currentFolder.length() - 1);
             }
 
-            // Finden des letzten Schrägstrichs nach dem Entfernen des letzten Teils
             int lastSlashIndex = currentFolder.lastIndexOf("/");
 
-            // Entfernen des letzten Teils und Beibehalten des abschließenden Schrägstrichs
             if (lastSlashIndex != -1) {
                 currentFolder = currentFolder.substring(0, lastSlashIndex + 1);
             }
