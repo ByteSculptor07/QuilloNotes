@@ -13,6 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
@@ -83,6 +86,14 @@ public class drawActivity extends AppCompatActivity {
         View root_view = this.getWindow().getDecorView().getRootView();
         LinearLayout layout_MainMenu = root_view.findViewById(R.id.parentLayout);
         layout_MainMenu.getForeground().setAlpha(0);
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                onBackPressed();
+            }
+        });
+
     }
     
     @Override
@@ -295,8 +306,7 @@ public class drawActivity extends AppCompatActivity {
             }
         });
     }
-    
-    @Override
+
     public void onBackPressed() {
         Intent intent = new Intent("DRAW_ACTIVITY_CLOSED");
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);

@@ -29,4 +29,6 @@
     <string name="page_menu_export">Export</string>
     <string name="page_menu_delete">Delete</string>
     <string name="open_page_options">Open page options</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
