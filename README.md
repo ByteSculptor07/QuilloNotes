@@ -85,7 +85,7 @@ Firstly, thank you for your interest in contributing to this project!
 The app is still in an early stage of development. Many features I have planned aren't implemented yet and of course, there are bugs. So any help is welcome, whether it's a new feature or just fixing a typo.
 
 > [!NOTE]  
-> If you'd like to contribute, check out the [issues](https://github.com/ByteSculptor07/QuilloNotes/issues).
+> If you'd like to contribute, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
 
 ## 📜 License
