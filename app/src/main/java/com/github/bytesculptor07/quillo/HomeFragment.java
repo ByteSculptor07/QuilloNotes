@@ -15,6 +15,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -115,6 +116,16 @@ public class HomeFragment extends Fragment {
         loadItems();
         loadPopup();
         loadNotebookPopup();
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(
+                getViewLifecycleOwner(),
+                new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {
+                        onBackPressed();
+                    }
+                }
+        );
     }
 
     private final View.OnClickListener createNew = new View.OnClickListener() {
@@ -943,7 +954,7 @@ public class HomeFragment extends Fragment {
         layout_MainMenu.getForeground().setAlpha(150);
     }
 
-    public boolean onBackPressed() {
+    public void onBackPressed() {
         if (currentFolder.length() > 1) {
             if (currentFolder.endsWith("/")) {
                 currentFolder = currentFolder.substring(0, currentFolder.length() - 1);
@@ -955,10 +966,8 @@ public class HomeFragment extends Fragment {
                 currentFolder = currentFolder.substring(0, lastSlashIndex + 1);
             }
             loadItems();
-
-            return true;
         } else {
-            return false;
+            requireActivity().finishAffinity();
         }
     }
 

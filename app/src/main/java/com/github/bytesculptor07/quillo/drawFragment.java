@@ -325,7 +325,7 @@ public class drawFragment extends Fragment implements DrawingView.DrawingListene
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                requireActivity().onBackPressed();
+                requireActivity().getOnBackPressedDispatcher().onBackPressed();
             }
         });
         
