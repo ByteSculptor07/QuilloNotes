@@ -79,6 +79,15 @@ public class GeneralUtils {
         return "";
     }
 
+    public static String getPathOfNoteid(String path) {
+        int lastIndex = path.lastIndexOf('/');
+        if (lastIndex > 0) {
+            return path.substring(0, lastIndex + 1);
+        }
+        return "/";
+    }
+
+
     public static String getFolderIdOfPath(String path) {
         Pattern pattern = Pattern.compile(".*/(\\d+)\\.qdata");
         Matcher matcher = pattern.matcher(path);
