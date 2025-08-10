@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowInsetsController;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.content.res.Configuration;
@@ -127,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
     }
     
     public void initPortrait() {
-        LinearLayout buttonPanel = findViewById(R.id.buttonPanel);
-        adjustStatusBar(buttonPanel);
+        FrameLayout layout = findViewById(R.id.fragmentContainer);
+        adjustStatusBar(layout);
     }
 
     private void createFragment(Fragment fragment){
@@ -241,8 +242,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void adjustStatusBar(LinearLayout buttonPanel) {
-        ViewCompat.setOnApplyWindowInsetsListener(buttonPanel, (v, windowInsets) -> {
+    public void adjustStatusBar(FrameLayout layout) {
+        ViewCompat.setOnApplyWindowInsetsListener(layout, (v, windowInsets) -> {
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
 
             ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
