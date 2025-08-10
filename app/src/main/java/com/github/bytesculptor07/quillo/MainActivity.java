@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     public void initUi() {
+        findViewById(R.id.parentLayout).getForeground().setAlpha(0);
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             initLandscape();
@@ -91,19 +92,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initFragments() {
+        createAllFragments();
+        attachAllFragments(false);
+    }
+
+    public void createAllFragments() {
         homeFrag = new HomeFragment();
         sharednotebooksFrag = new SharednotebooksFragment();
         templatesFrag = new TemplatesFragment();
         flashcardsFrag = new FlashcardsFragment();
         statisticsFrag = new StatisticsFragment();
         settingsFrag = new SettingsFragment();
+    }
 
-        createFragment(homeFrag);
-        createFragment(sharednotebooksFrag);
-        createFragment(templatesFrag);
-        createFragment(flashcardsFrag);
-        createFragment(statisticsFrag);
-        createFragment(settingsFrag);
+    public void attachAllFragments(boolean replace) {
+        createFragment(homeFrag, replace);
+        createFragment(sharednotebooksFrag, replace);
+        createFragment(templatesFrag, replace);
+        createFragment(flashcardsFrag, replace);
+        createFragment(statisticsFrag, replace);
+        createFragment(settingsFrag, replace);
 
         showFragment(homeFrag);
         visibleFragment = homeFrag;
@@ -132,11 +140,25 @@ public class MainActivity extends AppCompatActivity {
         adjustStatusBar(layout);
     }
 
-    private void createFragment(Fragment fragment){
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragmentContainer, fragment)
-                .hide(fragment)
-                .commit();
+    private void createFragment(Fragment fragment, boolean replace){
+        if (!replace) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragmentContainer, fragment)
+                    .hide(fragment)
+                    .commit();
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .remove(fragment)
+                    .commitNow();
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.fragmentContainer, fragment)
+                    .hide(fragment)
+                    .commit();
+
+        }
     }
     private void showFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction()
@@ -201,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         setContentView(R.layout.activity_main);
         initUi();
+        attachAllFragments(true);
     }
     
     @Override
