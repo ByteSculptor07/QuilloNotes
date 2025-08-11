@@ -1932,6 +1932,16 @@ public class drawFragment extends Fragment implements DrawingView.DrawingListene
                                 int selectedLine = (int) lineSlider.getValue();
                                 changeStrokeWidth(selectedLine);
                                 currentLine = selectedLine;
+                                if (oldLineButton != null) {
+                                    oldLineButton.setBackgroundResource(
+                                            R.drawable.button_background);
+                                }
+                                ImageButton btn = (ImageButton) obj;
+                                GradientDrawable drawable2 = new GradientDrawable();
+                                drawable2.setShape(GradientDrawable.OVAL);
+                                drawable2.setColor(0x22000000);
+                                oldLineButton = btn;
+                                btn.setBackground(drawable2);
                                 popupWindowLine.dismiss();
                             }
                         });
