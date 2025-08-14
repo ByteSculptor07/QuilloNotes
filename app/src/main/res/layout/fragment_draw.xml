@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:id="@+id/parentLayout"
@@ -333,7 +334,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@drawable/background_sidebar"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            tools:ignore="Suspicious0dp" />
 
         <com.github.bytesculptor07.quillo.CustomScrollView
             android:layout_height="match_parent"

@@ -153,7 +153,7 @@ public class DrawingView extends View {
                 
                     for (int i = 1; i < lines_count + 1; i++) {
                         h = height_step * i + height_offset;
-                    	canvas.drawLine(0, h, width, h, paint);
+                        canvas.drawLine(0, h, width, h, paint);
                     }
                     break;
                 

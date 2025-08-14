@@ -90,7 +90,7 @@ public class drawActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                onBackPressed();
+                backPressed();
             }
         });
 
@@ -307,7 +307,7 @@ public class drawActivity extends AppCompatActivity {
         });
     }
 
-    public void onBackPressed() {
+    public void backPressed() {
         Intent intent = new Intent("DRAW_ACTIVITY_CLOSED");
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
         
