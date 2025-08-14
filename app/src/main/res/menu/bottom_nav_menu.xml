@@ -7,14 +7,17 @@
     <item
         android:id="@+id/nav_shared"
         android:icon="@drawable/icon_shared"
-        android:title="@string/menu_shared" />
+        android:title="@string/menu_shared_notebooks" />
     <item
         android:id="@+id/nav_flashcards"
         android:icon="@drawable/icon_flashcards"
         android:title="@string/menu_flashcards" />
     <item
+        android:id="@+id/nav_statistics"
+        android:icon="@drawable/icon_statistics"
+        android:title="@string/menu_statistics" />
+    <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/icon_settings"
-        
         android:title="@string/menu_settings" />
 </menu>
