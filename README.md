@@ -72,7 +72,7 @@ To sync your notes using Dropbox, you need to obtain a Dropbox API Key.
 
 #### 5. Set App Key in the app
 
-Create a file called ```keystore.local``` in the project root with the content ```DROPBOX_KEY=<your-key-here>```. Make sure to replace <your-key-here> with your actual Dropbox key.
+Create a file called ```keystore.properties``` in the project root with the content ```DROPBOX_KEY=<your-key-here>```. Make sure to replace <your-key-here> with your actual Dropbox key.
 
 > [!WARNING]  
 > Do **NOT** commit your API Key to the repository.
