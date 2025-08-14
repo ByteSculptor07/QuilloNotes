@@ -65,7 +65,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0-beta1")
     implementation("com.google.mlkit:digital-ink-recognition:18.1.0")
-    implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.tom-roush:pdfbox-android:2.0.27.0")
     implementation("com.github.skydoves:colorpickerview:2.3.0")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
