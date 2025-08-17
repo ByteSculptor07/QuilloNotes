@@ -25,8 +25,9 @@ android {
         applicationId = "com.github.bytesculptor07.quillo"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1"
+
+        versionCode = project.findProperty("versionCode")?.toString()?.toInt() ?: 1
+        versionName = project.findProperty("versionName")?.toString() ?: "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
