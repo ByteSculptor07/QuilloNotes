@@ -37,6 +37,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import com.dropbox.core.oauth.DbxCredential;
 import com.dropbox.core.json.JsonReadException;
 import com.dropbox.core.v2.users.FullAccount;
@@ -118,6 +120,12 @@ public class MainActivity extends AppCompatActivity {
     }
     
     public void initLandscape() {
+        // Hide bottom navigation in landscape mode
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        if (bottomNavigation != null) {
+            bottomNavigation.setVisibility(View.GONE);
+        }
+        
         LinearLayout notebooks = findViewById(R.id.notebooks);
         LinearLayout sharednotebooks = findViewById(R.id.sharednotebooks);
         LinearLayout templates = findViewById(R.id.templates);
@@ -138,6 +146,33 @@ public class MainActivity extends AppCompatActivity {
     public void initPortrait() {
         FrameLayout layout = findViewById(R.id.fragmentContainer);
         adjustStatusBar(layout);
+        
+        // Set up bottom navigation
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setVisibility(View.VISIBLE); // Ensure it's visible in portrait mode
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_notebooks) {
+                menuChange(null, homeFrag);
+                return true;
+            } else if (itemId == R.id.nav_shared) {
+                menuChange(null, sharednotebooksFrag);
+                return true;
+            } else if (itemId == R.id.nav_flashcards) {
+                menuChange(null, flashcardsFrag);
+                return true;
+            } else if (itemId == R.id.nav_statistics) {
+                menuChange(null, statisticsFrag);
+                return true;
+            } else if (itemId == R.id.nav_settings) {
+                menuChange(null, settingsFrag);
+                return true;
+            }
+            return false;
+        });
+        
+        // Set default selected item
+        bottomNavigation.setSelectedItemId(R.id.nav_notebooks);
     }
 
     private void createFragment(Fragment fragment, boolean replace){
