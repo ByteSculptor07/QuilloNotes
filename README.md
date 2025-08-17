@@ -32,7 +32,7 @@ Your notebooks are also flexible. With the integrated page sorter, you can easil
 
 ### Install the pre-built app
 
-You can go to download Version 0.1 of the app [here](https://github.com/ByteSculptor07/QuilloNotes/releases/tag/v0.1) and install it on your device to test it. If you want to contribute, you should build the app from source.
+You can download the latest version of the app [here](https://github.com/ByteSculptor07/QuilloNotes/releases/latest) and install it on your device to test it. If you want to contribute, you should build the app from source.
 
 ### Build the app from source
 
